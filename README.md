@@ -8,7 +8,7 @@ Usage
 -----
 
 ```javascript
-var bloom = new BloomFilter(
+let bloom = new BloomFilter(
   32 * 256, // number of bits to allocate.
   16        // number of hash functions.
 );
@@ -24,15 +24,13 @@ bloom.test("foo");
 bloom.test("bar");
 bloom.test("blah");
 
-// Serialisation. Note that bloom.buckets may be a typed array,
-// so we convert to a normal array first.
-var array = [].slice.call(bloom.buckets),
-    json = JSON.stringify(array);
+// Serialisation.
+let serializedBloom = bloom.serialize();
 
 // Deserialisation. Note that the any array-like object is supported, but
 // this will be used directly, so you may wish to use a typed array for
 // performance.
-var bloom = new BloomFilter(array, 16);
+var bloom = new BloomFilter(serializedBloom, 16);
 ```
 
 Implementation

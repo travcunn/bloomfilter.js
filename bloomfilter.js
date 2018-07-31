@@ -76,6 +76,12 @@ class BloomFilter {
     for (let i = 0, n = buckets.length; i < n; ++i) bits += popcnt(buckets[i]);
     return -this.m * Math.log(1 - bits / this.m) / this.k;
   }
+
+  // Serialize the bloom filter
+  serialize() {
+    let array = [].slice.call(this.buckets);
+    return JSON.stringify(array);
+  }
 }
 
 // http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetParallel

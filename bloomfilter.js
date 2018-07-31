@@ -114,3 +114,5 @@ const fnv_mix = a => {
   a += a << 5;
   return a & 0xffffffff;
 };
+
+export default BloomFilter;
